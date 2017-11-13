@@ -3,11 +3,10 @@ volumes:
   speedtest-logs:
 services:
   speedtest:
-    build: .
     image: nibons/speedtest-cli:nanoserver
     container_name: speedtest-cli
     volumes:
      - speedtest-logs:c:/Logs
     restart: always
     environment:
-      logfileName: 'speedtest.json'
+      logfileName: 'speedtest.csv'

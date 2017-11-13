@@ -9,7 +9,7 @@ VOLUME C:/Logs
 RUN pip install speedtest-cli
 
 
-ENV logFileName=speedtest.json
+ENV logFileName=speedtest.csv
 
 #COPY the runtime commands
 COPY . .
