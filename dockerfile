@@ -1,4 +1,4 @@
-FROM stefanscherer/python-windows
+FROM stefanscherer/python-windows:nano
 SHELL ["powershell.exe","-command"]
 WORKDIR c:/App
 
