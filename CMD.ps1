@@ -8,8 +8,10 @@ if(!(test-path $file_logfile)) {
 
 get-item -Path $file_logfile
 
+
 @(1..6000) | foreach-object {
-    speedtest-cli --json | tee-object -variable data
-    $data | Out-File -FilePath $file_logfile -Encoding utf8 -Append
-    $data | convertfrom-json
+    speedtest-cli --json | tee-object -variable json
+    $data = $json | convertfrom-json
+    $data | export-csv -Path $file_logfile -Encoding UTF8 -Append
+    $data
 } | format-table
