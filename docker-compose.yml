@@ -1,0 +1,14 @@
+version: '3.4'
+volumes:
+  speedtest-logs:
+    external:
+services:
+  speedtest:
+    build: .
+    image: nibons/speedtest-cli:nanoserver
+    container_name: speedtest-cli
+    volumes:
+     - speedtest-logs:c:/Logs
+    restart_policy: 'restart: always'
+    environment:
+      logfileName: 'speedtest.log'
