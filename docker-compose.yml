@@ -1,7 +1,8 @@
-version: '3.4'
+version: '3.3'
 volumes:
   speedtest-logs:
     external:
+      name: speedtest-logs
 services:
   speedtest:
     build: .
@@ -9,6 +10,6 @@ services:
     container_name: speedtest-cli
     volumes:
      - speedtest-logs:c:/Logs
-    restart_policy: 'restart: always'
+    restart: always
     environment:
       logfileName: 'speedtest.log'
