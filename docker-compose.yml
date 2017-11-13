@@ -3,6 +3,7 @@ volumes:
   speedtest-logs:
 services:
   speedtest:
+    build: .
     image: nibons/speedtest-cli:nanoserver
     container_name: speedtest-cli
     volumes:

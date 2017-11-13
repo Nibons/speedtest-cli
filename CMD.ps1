@@ -10,8 +10,8 @@ get-item -Path $file_logfile
 
 
 @(1..6000) | foreach-object {
-    speedtest-cli --json | tee-object -variable json
-    $data = $json | convertfrom-json
+    $json = speedtest-cli --json
+    $data = $json | convertfrom-json | select-object download,upload,ping,timestamp,bytes_sent,bytes_received,share
     $data | export-csv -Path $file_logfile -Encoding UTF8 -Append
     $data
 } | format-table
