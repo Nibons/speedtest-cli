@@ -1,8 +1,6 @@
 version: '3.3'
 volumes:
   speedtest-logs:
-    external:
-      name: speedtest-logs
 services:
   speedtest:
     build: .
@@ -12,4 +10,4 @@ services:
      - speedtest-logs:c:/Logs
     restart: always
     environment:
-      logfileName: 'speedtest.log'
+      logfileName: 'speedtest.json'

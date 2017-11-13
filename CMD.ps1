@@ -1,11 +1,15 @@
-param([string]$logFileName = 'speedtest.csv')
+param([string]$logFileName)
 
-$file_logfile = "c:/Logs/$logFileName"
+$file_logfile = "c:/Logs/" + $env:logFileName
 
 if(!(test-path $file_logfile)) {
-    New-Item -Path $file_logfile -ItemType File
+    New-Item -Path $file_logfile -ItemType File | out-null
 }
 
-do{
-    speedtest-cli --json | tee-object -FilePath $file_logfile -Append  | ConvertFrom-Json | format-table
-}while($true)
+get-item -Path $file_logfile
+
+@(1..6000) | foreach-object {
+    speedtest-cli --json | tee-object -variable data
+    $data | Out-File -FilePath $file_logfile -Encoding utf8 -Append
+    $data | convertfrom-json
+} | format-table
